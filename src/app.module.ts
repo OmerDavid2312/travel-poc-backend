@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { WeatherController } from './controllers/weather.controller';
+import { RecommendationController } from './controllers/recommendation.controller';
 import { WeatherService } from './services/weather.service';
+import { RecommendationService } from './services/recommendation.service';
 import { OllamaService } from './services/ollama.service';
 
 @Module({
   imports: [],
-  controllers: [WeatherController],
+  controllers: [WeatherController, RecommendationController],
   providers: [
     {
       provide: OllamaService,
@@ -17,6 +19,7 @@ import { OllamaService } from './services/ollama.service';
       },
     },
     WeatherService,
+    RecommendationService,
   ],
 })
 export class AppModule {}

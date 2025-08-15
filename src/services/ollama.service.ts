@@ -72,6 +72,7 @@ export class OllamaService {
 
   async generateResponse(prompt: string): Promise<string> {
     try {
+      this.logger.log(`Generating response for prompt: ${prompt}`);
       const response = await axios.post(`${this.ollamaUrl}/api/generate`, {
         model: this.ollamaModel,
         prompt: prompt,
@@ -82,7 +83,7 @@ export class OllamaService {
           num_predict: 800 // Max tokens for weather responses
         }
       }, {
-        timeout: 60000 // 60 seconds timeout for generation
+        timeout: 120000 // 60 seconds timeout for generation
       });
 
       return response.data.response.trim();
